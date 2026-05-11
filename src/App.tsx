@@ -162,7 +162,7 @@ function App() {
       case 'reports':
         return <Reports />;
       case 'settings':
-        return <Settings onClose={() => handleViewChange('dashboard')} />;
+        return <Settings onBack={() => handleViewChange('dashboard')} />;
       case 'new-item':
         return <NewItem editingId={editingId} isCloning={isCloning} onClose={() => handleViewChange('inventory')} />;
       case 'new-customer':

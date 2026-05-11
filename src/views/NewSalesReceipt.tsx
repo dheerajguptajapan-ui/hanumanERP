@@ -269,7 +269,7 @@ export function NewSalesReceipt({ onClose, editingId }: NewSalesReceiptProps) {
                       <Table.Th style={{ width: '15%' }}>RATE</Table.Th>
                       <Table.Th style={{ width: '15%' }}>TAX</Table.Th>
                       <Table.Th style={{ width: '15%' }} ta="right">AMOUNT</Table.Th>
-                      <Table.Th style={{ width: '5%' }}></Table.Th>
+                      <Table.Th style={{ width: '5%' }} />
                     </Table.Tr>
                   </Table.Thead>
                   <Table.Tbody>

@@ -125,7 +125,7 @@ export function PaymentsReceived() {
                 <Table.Td><Text size="xs">{p.mode}</Text></Table.Td>
                 <Table.Td ta="right"><Text size="xs" fw={600}>{p.amount}</Text></Table.Td>
                 <Table.Td ta="right"><Text size="xs">{p.unusedAmount}</Text></Table.Td>
-                <Table.Td></Table.Td>
+                <Table.Td />
               </Table.Tr>
             ))}
           </Table.Tbody>

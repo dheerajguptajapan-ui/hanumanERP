@@ -330,7 +330,7 @@ export function Quotations() {
                   <Table.Th>Product</Table.Th>
                   <Table.Th align="right">Qty</Table.Th>
                   <Table.Th align="right">Total</Table.Th>
-                  {isEditing && <Table.Th></Table.Th>}
+                  {isEditing && <Table.Th />}
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>

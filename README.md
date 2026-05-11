@@ -1,69 +1,89 @@
-# Enterprise ERP: India GST-Compliant SCM System
-## Production Deployment Manual & User Guide
+<p align="center">
+  <img src="assets/banner.png" alt="Hanuman ERP Banner" width="100%">
+</p>
 
-Welcome to your Enterprise-grade Supply Chain Management (SCM) system. This platform is designed for Indian businesses to manage inventory, sales, and purchases while maintaining 100% GST compliance.
+<h1 align="center">🕉️ Hanuman ERP</h1>
 
----
+<p align="center">
+  <strong>The Ultimate Offline-First, GST-Compliant Supply Chain Solution for Indian Hardware Businesses.</strong>
+</p>
 
-### 🚀 Getting Started (First-Time Setup)
-
-When you launch the system for the first time, follow these steps in order to ensure your invoices are legally compliant:
-
-#### 1. Setup Your Organization Profile
-- Navigate to **Settings** > **Organization Profile**.
-- Enter your **Business Name**, **Address**, **GSTIN**, and **PAN**.
-- Upload your company logo (will appear on all PDFs).
-- Save changes. This data is used to calculate tax rates (IGST vs. CGST/SGST) based on your state.
-
-#### 2. Configure Your Inventory
-- Go to the **Inventory** module.
-- Click **Add New Item**.
-- **Crucial**: Enter the correct **HSN Code** and **GST Rate** (5%, 12%, 18%, or 28%).
-- Set "Opening Stock" if you already have physical items in your shop.
-
-#### 3. Add Customers & Vendors
-- Add your frequent buyers in **Sales** > **Customers**.
-- Add your suppliers in **Purchases** > **Vendors**.
-- Ensure their **GSTIN** is entered correctly for tax credit (ITC) purposes.
+<p align="center">
+  <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License">
+  <img src="https://img.shields.io/badge/Version-1.0.0-orange.svg" alt="Version">
+  <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Maintained">
+  <img src="https://img.shields.io/badge/Platform-Web%20%2F%20PWA-blue" alt="Platform">
+  <img src="https://img.shields.io/github/workflow/status/dheerajguptajapan-ui/hanumanERP/Deploy%20to%20GitHub%20Pages" alt="Deploy Status">
+</p>
 
 ---
 
-### 📦 Supply Chain Workflows
+## ✨ Features at a Glance
 
-#### A. Procure-to-Pay (P2P) - Purchasing
-1. **Purchase Order (PO)**: Create a PO in the Purchases module and send the PDF to your vendor.
-2. **Receive Goods (GRN)**: When items arrive, open the PO and click **Receive**. This updates your physical stock levels.
-3. **Bill**: Once the vendor sends their invoice, click **Convert to Bill** on the PO. This records your accounts payable.
+<p align="center">
+  <img src="assets/features.png" alt="Hanuman ERP Features" width="80%">
+</p>
 
-#### B. Order-to-Cash (O2C) - Sales
-1. **Quotation**: Send a quote to your customer.
-2. **Sales Order**: Convert the quote to an order to reserve stock.
-3. **Invoice**: Click **Convert to Invoice** to generate the legal GST document.
-4. **Payment**: Record the payment received to clear your accounts receivable.
+### 📦 Smart Inventory Management
+- **HSN-wise Tracking**: Automatic grouping and tax calculation based on Indian GST laws.
+- **Offline-First Architecture**: Work seamlessly without internet; your data stays in your browser.
+- **Stock Alerts**: Get notified when items reach minimum levels.
 
----
+### 🧾 Comprehensive Sales & Billing
+- **GST-Compliant Invoices**: Generate professional PDFs with IGST/CGST/SGST splits.
+- **Quotations to Sales Orders**: One-click conversion for a smooth sales workflow.
+- **Payment Tracking**: Manage accounts receivable with ease.
 
-### 🛡️ Data Safety & Backups
-
-This system uses an **Offline-First** architecture for maximum speed. Your data is stored securely in your browser's IndexedDB.
-
-- **Auto-Backup**: The system automatically takes a snapshot of your database every 10 minutes.
-- **Manual Export**: Go to **Settings** > **Data & Sync** to download a `.json` backup file. **Do this daily.**
-- **Restore**: If you change computers or clear your browser cache, use the **Restore** button to upload your latest JSON backup.
+### 🛡️ Security & Reliability
+- **Local Persistence**: Uses IndexedDB for lightning-fast, secure local storage.
+- **Auto-Backups**: Daily JSON exports to ensure your business data is never lost.
+- **100% White-Labeled**: Fully customizable branding for your hardware shop.
 
 ---
 
-### 📑 GST Compliance Features
-- **HSN-wise Reporting**: All invoices automatically group taxes by HSN code.
-- **Automatic Tax Detection**: The system detects if the customer is in your state (CGST+SGST) or outside your state (IGST) based on the GSTIN/State field.
-- **Reverse Charge Support**: Can be toggled for specific purchase bills.
+## 🚀 Getting Started
+
+### Prerequisites
+- **Node.js**: v18 or higher
+- **Browser**: Chrome, Edge, or Firefox (Latest versions)
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/dheerajguptajapan-ui/hanumanERP.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd hardware-erp
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
 ---
 
-### 🛠️ Technical Support & Best Practices
-- **Browser**: Use the latest version of Chrome or Edge for the best experience.
-- **Stock Accuracy**: Always record a **Goods Receipt** before sales to prevent "Negative Stock" warnings.
-- **Daily Routine**: Export your data at the end of each business day.
+## 🛠️ Tech Stack
+
+- **Frontend**: React.js with TypeScript
+- **Styling**: Mantine UI & Tailwind CSS
+- **Icons**: Lucide React
+- **Database**: Dexie.js (IndexedDB Wrapper)
+- **Deployment**: GitHub Pages (Automated via GitHub Actions)
+- **PWA**: Vite PWA Plugin
 
 ---
-*Created for Enterprise ERP - Optimized for Indian Supply Chain Excellence.*
+
+## 📑 GST Compliance Manual
+
+For a detailed guide on setting up your organization profile and maintaining tax compliance, please refer to our [Deployment Manual](docs/manual.md).
+
+---
+
+<p align="center">
+  Built with ❤️ for Indian Small Businesses.
+</p>

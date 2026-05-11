@@ -10,7 +10,7 @@ export function DatabaseStatus() {
   const refreshStats = async () => {
     const s = await getStorageStats();
     setStats(s);
-    if (navigator.storage && navigator.storage.persisted) {
+    if (navigator.storage?.persisted) {
       setIsPersisted(await navigator.storage.persisted());
     }
   };
@@ -24,7 +24,7 @@ export function DatabaseStatus() {
     const k = 1024;
     const sizes = ['B', 'KB', 'MB', 'GB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    return `${parseFloat((bytes / k ** i).toFixed(2))} ${sizes[i]}`;
   };
 
   return (

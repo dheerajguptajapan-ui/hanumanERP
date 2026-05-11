@@ -40,7 +40,7 @@ export function NewGoodsReceipt({ onClose, purchaseOrderId }: NewGoodsReceiptPro
       purchaseOrderId: '',
       date: new Date(),
       reference: '',
-      items: [] as { productId: number, productName: string, orderedQuantity: number, receivedQuantity: number, price: number }[],
+      items: [] as { productId: number, productName: string, orderedQuantity: number, alreadyReceived: number, receivedQuantity: number, price: number }[],
       notes: '',
     },
     validate: {

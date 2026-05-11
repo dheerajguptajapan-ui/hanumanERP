@@ -14,7 +14,7 @@ export async function generateDocumentPDF(docType: string, data: any, returnMode
   });
 
   const themeColor = settings.pdfColor || '#3b82f6';
-  const logo = settings.logoUrl;
+  const logo = settings.logoUrl || null;
   const template = settings.pdfTemplate || 'standard';
   
   // Fetch partner details if not provided

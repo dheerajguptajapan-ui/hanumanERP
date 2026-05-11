@@ -33,7 +33,7 @@ export function validateGSTIN(gstin: string): { isValid: boolean; error?: string
     const checkDigit = upperGstin[14];
 
     for (let i = 0; i < 14; i++) {
-      let codeValue = CHAR_MAP.indexOf(upperGstin[i]);
+      const codeValue = CHAR_MAP.indexOf(upperGstin[i]);
       let digitValue = codeValue * factor;
       
       // If result is > 36, sum digits in base 36

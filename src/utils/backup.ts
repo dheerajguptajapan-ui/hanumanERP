@@ -63,7 +63,7 @@ export async function importDatabase(jsonData: any) {
  * Requests the browser to keep storage persistent
  */
 export async function persistStorage() {
-  if (navigator.storage && navigator.storage.persist) {
+  if (navigator.storage?.persist) {
     const isPersisted = await navigator.storage.persist();
     console.log(`Storage persisted: ${isPersisted}`);
     return isPersisted;
@@ -75,7 +75,7 @@ export async function persistStorage() {
  * Gets storage estimate
  */
 export async function getStorageStats() {
-  if (navigator.storage && navigator.storage.estimate) {
+  if (navigator.storage?.estimate) {
     const estimate = await navigator.storage.estimate();
     return {
       usage: estimate.usage || 0,
