@@ -371,11 +371,11 @@ export function Layout({ children, activeView, onViewChange }: LayoutProps) {
                 border: '2px solid rgba(255,255,255,0.1)'
               }}
             >
-              <img src={settings?.logoUrl || "/src/logo.png"} style={{ width: '85%', height: '85%', objectFit: 'contain' }} alt="Logo" />
+              <img src="/logo.png" style={{ width: '85%', height: '85%', objectFit: 'contain' }} alt="Logo" />
             </Box>
             <Title order={3} c="white" ta="center" style={{ lineHeight: 1.2, letterSpacing: '0.5px' }}>
-              {settings?.shopName || 'Hanuman ERP'}<br />
-              <Text span size="xs" fw={400} opacity={0.7}>Enterprise Solution</Text>
+              Hanuman Enterprise Solution<br />
+              <Text span size="xs" fw={400} opacity={0.7}>ERP SOFTWARE</Text>
             </Title>
           </Stack>
 

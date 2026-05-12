@@ -201,7 +201,7 @@ function App() {
             borderRadius: '50%',
             animation: 'spin 0.8s linear infinite',
           }} />
-          <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+          <style>{'@keyframes spin { to { transform: rotate(360deg); } }'}</style>
           <p style={{ margin: 0, fontSize: 14 }}>Loading Inventory System...</p>
         </div>
       </MantineProvider>

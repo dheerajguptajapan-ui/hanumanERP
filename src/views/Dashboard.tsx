@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { 
   SimpleGrid, 
   Paper, 
@@ -219,9 +219,9 @@ export function Dashboard({ onViewChange }: DashboardProps) {
               <Stack gap="xl">
                  <Group justify="space-between" align="flex-start">
                     <Group gap="md">
-                       <Box w={80} h={80} bg="indigo.0" className="hanuman-logo-animated divine-glow" style={{ borderRadius: '16px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                          <img src="./logo.png" style={{ width: '85%', height: '85%', objectFit: 'contain' }} alt="Logo" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
-                       </Box>
+                        <Box w={80} h={80} bg="indigo.0" className="hanuman-logo-animated divine-glow" style={{ borderRadius: '16px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                           <img src="/logo.png" style={{ width: '85%', height: '85%', objectFit: 'contain' }} alt="Logo" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+                        </Box>
                        <Box>
                            <Title order={3}>Welcome to {stats?.shopName ?? 'Your ERP'} <Box component="span" c="blue" style={{ cursor: 'pointer', fontSize: rem(14) }}>Overview</Box></Title>
                           <Text size="sm" c="dimmed">The easy-to-use inventory software that you can set up in no time!</Text>
@@ -262,7 +262,7 @@ export function Dashboard({ onViewChange }: DashboardProps) {
                       <Grid.Col span={8}>
                          <Stack gap="xs">
                             <Text fw={700}>Configure your Inventory</Text>
-                            <Text size="xs" c="dimmed">Add the goods or services that your business deals with in Hanuman ERP. You can also create an Item with Variants or combine multiple items into one by creating a composite item.</Text>
+                            <Text size="xs" c="dimmed">Add the goods or services that your business deals with in Hanuman Enterprise Solution. You can also create an Item with Variants or combine multiple items into one by creating a composite item.</Text>
                             <Text size="sm" fw={600} mt="md">Item created</Text>
                             <Anchor size="sm" c="blue">Create a composite item</Anchor>
                          </Stack>

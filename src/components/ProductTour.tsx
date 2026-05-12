@@ -12,7 +12,7 @@ export function ProductTour({ opened, onClose }: ProductTourProps) {
 
   const steps = [
     {
-      title: 'Welcome to Hanuman ERP System',
+      title: 'Welcome to Hanuman Enterprise Solution',
       description: 'Let\'s take a quick look at how you can manage your inventory and sales efficiently.',
       icon: PlayCircle,
       color: 'indigo',
@@ -80,7 +80,7 @@ export function ProductTour({ opened, onClose }: ProductTourProps) {
               <Stack align="center" gap="md" py="xl">
                 {active === 0 ? (
                   <Box w={110} h={110} bg="indigo.0" className="hanuman-logo-animated divine-glow" style={{ borderRadius: '20px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <img src="/src/logo.png" style={{ width: '85%', height: '85%', objectFit: 'contain' }} alt="Hanuman Logo" />
+                    <img src="/logo.png" style={{ width: '85%', height: '85%', objectFit: 'contain' }} alt="Hanuman Logo" />
                   </Box>
                 ) : (
                   <Box 

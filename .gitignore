@@ -3,3 +3,8 @@ node_modules
 dist
 dist-ssr
 *.local
+release
+*.log
+.env
+.idea
+.vscode

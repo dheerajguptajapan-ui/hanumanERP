@@ -12,7 +12,7 @@
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License">
   <img src="https://img.shields.io/badge/Version-1.0.0-orange.svg" alt="Version">
   <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Maintained">
-  <img src="https://img.shields.io/badge/Platform-Web%20%2F%20PWA-blue" alt="Platform">
+  <img src="https://img.shields.io/badge/Platform-Web%20%2F%20PWA%20%2F%20Windows-blue" alt="Platform">
   <img src="https://img.shields.io/github/workflow/status/dheerajguptajapan-ui/hanumanERP/Deploy%20to%20GitHub%20Pages" alt="Deploy Status">
 </p>
 
@@ -38,6 +38,19 @@
 - **Local Persistence**: Uses IndexedDB for lightning-fast, secure local storage.
 - **Auto-Backups**: Daily JSON exports to ensure your business data is never lost.
 - **100% White-Labeled**: Fully customizable branding for your hardware shop.
+
+---
+
+## 📥 Download & Install
+
+**Hanuman ERP is now available as a native Windows Application!** No browser needed.
+
+1. **Download**: Go to the [Releases Page](https://github.com/dheerajguptajapan-ui/hanumanERP/releases/latest) and download `Hanuman_ERP_Setup.exe`.
+2. **Install**: Run the installer and follow the instructions.
+3. **Launch**: Open "Hanuman Enterprise Solution" directly from your Desktop.
+
+> [!TIP]
+> Use the native app for the best offline experience and faster performance.
 
 ---
 

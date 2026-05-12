@@ -329,7 +329,7 @@ export function Reports() {
               </ActionIcon>
               <div>
                 <Title order={4}>{selectedReport.name}</Title>
-                <Text size="xs" c="dimmed">{selectedReport.category} Report • Hardware ERP</Text>
+                <Text size="xs" c="dimmed">{selectedReport.category} Report • Hanuman Enterprise Solution</Text>
               </div>
             </Group>
             <Group gap="sm">
@@ -343,7 +343,7 @@ export function Reports() {
         <Box p="xl" style={{ flex: 1, overflow: 'auto' }}>
           <Paper withBorder p="xl" radius="md" bg="white" shadow="xs">
             <Stack align="center" mb="xl">
-               <Title order={3}>Hardware ERP</Title>
+               <Title order={3}>Hanuman Enterprise Solution</Title>
                <Title order={4} c="dimmed">{selectedReport.name}</Title>
                <Text size="sm">Basis: Accrual • As of {new Date().toLocaleDateString()}</Text>
             </Stack>

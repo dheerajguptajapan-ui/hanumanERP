@@ -68,7 +68,7 @@ export function SetupWizard({ opened, onComplete }: SetupWizardProps) {
 
   const form = useForm({
     initialValues: {
-      shopName: '',
+      shopName: 'Hanuman Enterprise Solution',
       industry: '',
       shopAddress: '',
       shopCity: '',
@@ -126,7 +126,7 @@ export function SetupWizard({ opened, onComplete }: SetupWizardProps) {
       // Save settings
       await db.settings.add({
         shopName: v.shopName,
-        shopAddress: `${v.shopAddress}${v.shopCity ? ', ' + v.shopCity : ''}`,
+        shopAddress: `${v.shopAddress}${v.shopCity ? `, ${v.shopCity}` : ''}`,
         shopPhone: v.shopPhone,
         shopEmail: v.shopEmail,
         shopGSTIN: v.shopGSTIN,
@@ -201,9 +201,9 @@ export function SetupWizard({ opened, onComplete }: SetupWizardProps) {
         }}
       >
         <Group gap="md">
-          <ThemeIcon size={48} radius="md" color="white" variant="white" style={{ color: '#1971C2' }}>
-            <Package size={28} />
-          </ThemeIcon>
+          <Box w={48} h={48} bg="white" style={{ borderRadius: '8px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <img src="/logo.png" style={{ width: '85%', height: '85%', objectFit: 'contain' }} alt="Logo" />
+          </Box>
           <Box>
             <Title order={3} c="white">Welcome! Let's set up your business</Title>
             <Text size="sm" c="rgba(255,255,255,0.8)">

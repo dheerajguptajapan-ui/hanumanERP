@@ -243,7 +243,7 @@ export function InvoiceDetail({ invoiceId, onClose, onEdit, onViewChange }: Invo
               <Stack gap={40}>
                  <Group justify="space-between" align="flex-start">
                     <Box>
-                       <Title order={3} fw={700}>{settings?.shopName || 'HARDWARE ERP'}</Title>
+                       <Title order={3} fw={700}>{settings?.shopName || 'Hanuman Enterprise Solution'}</Title>
                        <Text size="sm" c="dimmed">{settings?.shopAddress?.split('\n')[0] || ''}</Text>
                     </Box>
                     <Box style={{ textAlign: 'right' }}>
@@ -349,7 +349,7 @@ export function InvoiceDetail({ invoiceId, onClose, onEdit, onViewChange }: Invo
                  <Box mt={60} ml="auto" style={{ width: 250, textAlign: 'right' }}>
                     <Stack gap="xl" align="flex-end">
                       <Box>
-                        <Text size="sm" fw={600}>For {settings?.shopName || 'HARDWARE ERP'}</Text>
+                        <Text size="sm" fw={600}>For {settings?.shopName || 'Hanuman Enterprise Solution'}</Text>
                         {settings?.companySealBase64 && (
                           <Box mt="xs">
                             <img src={settings.companySealBase64} alt="Company Seal" style={{ height: 60, objectFit: 'contain' }} />

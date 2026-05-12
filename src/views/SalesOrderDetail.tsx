@@ -105,7 +105,7 @@ export function SalesOrderDetail({ orderId, onClose, onEdit, onViewChange }: Sal
 
   const handleEmail = () => {
     const subject = `Sales Order ${order.orderNumber}`;
-    const body = `Hi ${partner?.name || 'Customer'},\n\nPlease find attached the sales order ${order.orderNumber}.\n\nTotal Amount: ₹${(order.total || 0).toLocaleString()}\n\nBest regards,\nHardware ERP Team`;
+    const body = `Hi ${partner?.name || 'Customer'},\n\nPlease find attached the sales order ${order.orderNumber}.\n\nTotal Amount: ₹${(order.total || 0).toLocaleString()}\n\nBest regards,\nHanuman Enterprise Solution Team`;
     window.location.href = `mailto:${partner?.email || ''}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
@@ -344,7 +344,7 @@ export function SalesOrderDetail({ orderId, onClose, onEdit, onViewChange }: Sal
               <Box mt={60} ml="auto" style={{ width: 250, textAlign: 'right' }}>
                 <Stack gap="xl" align="flex-end">
                   <Box>
-                    <Text size="sm" fw={600}>For {settings?.shopName || 'HARDWARE ERP'}</Text>
+                    <Text size="sm" fw={600}>For {settings?.shopName || 'Hanuman Enterprise Solution'}</Text>
                     {settings?.companySealBase64 && (
                       <Box mt="xs">
                         <img src={settings.companySealBase64} alt="Company Seal" style={{ height: 60, objectFit: 'contain' }} />

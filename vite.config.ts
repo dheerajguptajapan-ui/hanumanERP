@@ -35,4 +35,8 @@ export default defineConfig({
     })
   ],
   base: './', // Important for GitHub Pages
+  server: {
+    port: 3000,
+    strictPort: true,
+  },
 });

@@ -67,7 +67,7 @@ export function Branding({ onBack, onNavigate }: BrandingProps) {
     accentColor: '#3b82f6',
     showBranding: true,
     logoUrl: null as string | null,
-    organizationName: 'HARDWARE ERP'
+    organizationName: 'Hanuman Enterprise Solution'
   });
 
   React.useEffect(() => {
@@ -78,7 +78,7 @@ export function Branding({ onBack, onNavigate }: BrandingProps) {
           accentColor: settings.accentColor || '#3b82f6',
           showBranding: settings.showBranding !== undefined ? settings.showBranding : true,
           logoUrl: settings.logoUrl || null,
-          organizationName: settings.organizationName || settings.shopName || 'HARDWARE ERP'
+          organizationName: settings.organizationName || settings.shopName || 'Hanuman Enterprise Solution'
         });
       }
     });
@@ -90,7 +90,7 @@ export function Branding({ onBack, onNavigate }: BrandingProps) {
       const existingSettings = await db.settings.toCollection().first();
       const updatedData = {
         ...(existingSettings || {
-          shopName: 'HARDWARE ERP',
+        shopName: 'Hanuman Enterprise Solution',
           shopAddress: '',
           shopPhone: '',
           shopEmail: '',
@@ -284,8 +284,8 @@ export function Branding({ onBack, onNavigate }: BrandingProps) {
               {/* Logo Section */}
               <Stack gap="xl" align="center" py="xl">
                  <Stack gap={5} align="center">
-                    <Title order={3} fw={700}>Organization Profile</Title>
-                    <Text size="sm" c="dimmed">Set up your brand identity for professional documents</Text>
+                    <Title order={3} fw={700}>Organization Profile Logo</Title>
+                    <Text size="sm" c="dimmed">This logo will appear on your Invoices, Bills, and other official PDFs</Text>
                  </Stack>
 
                  <Stack gap="md" align="center">

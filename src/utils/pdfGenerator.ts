@@ -66,7 +66,7 @@ function renderStandardTemplate(doc: any, docType: string, data: any, settings: 
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(20);
   doc.setFont('helvetica', 'bold');
-  doc.text(settings?.shopName || 'HARDWARE ERP', headerX, 18);
+  doc.text(settings?.shopName || 'Hanuman Enterprise Solution', headerX, 18);
 
   doc.setFontSize(18);
   doc.text(docType.toUpperCase(), 200, 20, { align: 'right' });
@@ -99,7 +99,7 @@ function renderJapaneseTemplate(doc: any, docType: string, data: any, settings: 
 
   // Right side info (Company)
   doc.setFontSize(11);
-  doc.text(settings?.shopName || 'HARDWARE ERP', 195, 35, { align: 'right' });
+  doc.text(settings?.shopName || 'Hanuman Enterprise Solution', 195, 35, { align: 'right' });
   doc.setFontSize(9);
   doc.setFont('helvetica', 'normal');
   const addrLines = (settings?.shopAddress || '').split('\n');
@@ -196,7 +196,7 @@ function renderProfessionalTemplate(doc: any, docType: string, data: any, settin
   
   doc.setTextColor(0, 0, 0);
   doc.setFontSize(22);
-  doc.text(settings?.shopName || 'HARDWARE ERP', headerX, 22);
+  doc.text(settings?.shopName || 'Hanuman Enterprise Solution', headerX, 22);
   doc.setFontSize(24);
   doc.setTextColor(themeColor);
   doc.text(docType.toUpperCase(), 200, 25, { align: 'right' });
@@ -209,7 +209,7 @@ function renderElegantTemplate(doc: any, docType: string, data: any, settings: a
   doc.setFont('times', 'bold');
   doc.setFontSize(26);
   doc.setTextColor(themeColor);
-  doc.text(settings?.shopName || 'HARDWARE ERP', 105, 30, { align: 'center' });
+  doc.text(settings?.shopName || 'Hanuman Enterprise Solution', 105, 30, { align: 'center' });
   renderCommonBody(doc, docType, data, settings, themeColor, 60, partner);
 }
 
@@ -228,7 +228,7 @@ function renderCompactTemplate(doc: any, docType: string, data: any, settings: a
    if (logo) doc.addImage(logo, 'PNG', 15, 5, 15, 15);
    doc.setFontSize(10);
    doc.text(docType.toUpperCase(), logo ? 35 : 15, 12);
-   doc.text(settings?.shopName || 'HARDWARE ERP', 195, 12, { align: 'right' });
+   doc.text(settings?.shopName || 'Hanuman Enterprise Solution', 195, 12, { align: 'right' });
    renderCommonBody(doc, docType, data, settings, themeColor, 25, partner);
 }
 
