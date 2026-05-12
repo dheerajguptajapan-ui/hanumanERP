@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { 
   SimpleGrid, 
   Paper, 
@@ -103,25 +103,30 @@ export function Dashboard({ onViewChange }: DashboardProps) {
 
       // ── Sales chart: last 30 days aggregated by date ──
       const today = new Date();
+      today.setHours(23, 59, 59, 999); // Set to end of today
       const chartData: { name: string; sales: number }[] = [];
+      
       for (let i = 29; i >= 0; i--) {
         const d = new Date(today);
         d.setDate(d.getDate() - i);
         const label = `${d.getDate()} ${d.toLocaleString('default', { month: 'short' })}`;
+        
         const dayTotal = invoices
           .filter(inv => {
             const invDate = new Date(inv.date);
-            return invDate.getFullYear() === d.getFullYear() &&
+            return invDate.getDate() === d.getDate() &&
                    invDate.getMonth() === d.getMonth() &&
-                   invDate.getDate() === d.getDate();
+                   invDate.getFullYear() === d.getFullYear();
           })
           .reduce((sum, inv) => sum + inv.total, 0);
+          
         chartData.push({ name: label, sales: dayTotal });
       }
 
       // Real Activity Feed
-      const recentInvoices = invoices.slice(-3);
-      const recentQuotes = quotations.slice(-3);
+      const recentInvoices = invoices.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0, 3);
+      const recentQuotes = quotations.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0, 3);
+      
       const activities = [
         ...recentInvoices.map((inv: any) => ({
           id: `inv-${inv.id}`,
@@ -135,10 +140,13 @@ export function Dashboard({ onViewChange }: DashboardProps) {
           user: currentUser?.name || 'User',
           time: new Date(q.date).toLocaleDateString()
         }))
-      ].sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime()).slice(0, 5);
+      ].slice(0, 5);
+
+      // Max value for YAxis domain
+      const maxSales = Math.max(...chartData.map(d => d.sales), 5000);
 
       return {
-        shopName: settings[0]?.shopName || 'Hanuman ERP System',
+        shopName: settings[0]?.shopName || 'My Business',
         userName: currentUser?.name || 'User',
         userEmail: currentUser?.email || '',
         userInitials: (currentUser?.name || 'U').split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase(),
@@ -158,6 +166,7 @@ export function Dashboard({ onViewChange }: DashboardProps) {
         topStocked: [...products].sort((a, b) => b.stock - a.stock).slice(0, 3),
         chartData,
         recentActivities: activities,
+        maxSales,
       };
     } catch (e) {
       console.error('Dashboard calc error:', e);
@@ -198,7 +207,7 @@ export function Dashboard({ onViewChange }: DashboardProps) {
           <Tabs.Tab value="getting-started">
             <Group gap={5}>
               Getting Started 
-              {(!stats?.shopName || stats?.shopName === 'Enterprise ERP' || stats?.productCount === 0) && <Badge size="xs" color="red" circle variant="filled"> </Badge>}
+              {(!stats?.shopName || stats?.shopName === 'My Business' || stats?.productCount === 0) && <Badge size="xs" color="red" circle variant="filled"> </Badge>}
             </Group>
           </Tabs.Tab>
           <Tabs.Tab value="recent-updates">Recent Updates</Tabs.Tab>
@@ -211,10 +220,10 @@ export function Dashboard({ onViewChange }: DashboardProps) {
                  <Group justify="space-between" align="flex-start">
                     <Group gap="md">
                        <Box w={80} h={80} bg="indigo.0" className="hanuman-logo-animated divine-glow" style={{ borderRadius: '16px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                          <img src="/src/logo.png" style={{ width: '85%', height: '85%', objectFit: 'contain' }} alt="Logo" />
+                          <img src="./logo.png" style={{ width: '85%', height: '85%', objectFit: 'contain' }} alt="Logo" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
                        </Box>
                        <Box>
-                           <Title order={3}>Welcome to Hanuman ERP System <Box component="span" c="blue" style={{ cursor: 'pointer', fontSize: rem(14) }}>Overview</Box></Title>
+                           <Title order={3}>Welcome to {stats?.shopName ?? 'Your ERP'} <Box component="span" c="blue" style={{ cursor: 'pointer', fontSize: rem(14) }}>Overview</Box></Title>
                           <Text size="sm" c="dimmed">The easy-to-use inventory software that you can set up in no time!</Text>
                        </Box>
                     </Group>
@@ -279,25 +288,32 @@ export function Dashboard({ onViewChange }: DashboardProps) {
                     <Divider />
                     <Box p="xl">
                       {stats?.topSelling?.length ? (
-                        <Group align="flex-start" gap="xl">
-                           <Box w={100} h={100} bg="gray.1" style={{ borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                              <Package size={40} color="#adb5bd" />
+                        <Group align="center" gap="xl">
+                           <Box w={120} h={120} bg="gray.1" style={{ borderRadius: '8px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                              <Image 
+                                src={stats.topStocked.find(p => p.name === stats.topSelling?.[0]?.name)?.imageFront || "https://img.icons8.com/color/96/package.png"} 
+                                w="100%" 
+                                h="100%" 
+                                style={{ objectFit: 'cover' }}
+                              />
                            </Box>
-                            <Stack gap={0}>
-                               <Text size="sm" fw={500}>{stats?.topSelling?.[0]?.name || 'No Items'}</Text>
-                               <Text size="sm" fw={700}>{stats?.topSelling?.[0]?.qty || 0} units sold</Text>
-                               <Text size="xs" c="green" fw={700}>₹ {stats?.topSelling?.[0]?.revenue?.toLocaleString()}</Text>
+                            <Stack gap="xs" style={{ flex: 1 }}>
+                               <Badge color="blue" size="sm">Current Leader</Badge>
+                               <Title order={4}>{stats.topSelling[0].name}</Title>
+                               <Group gap="xs">
+                                  <Text size="sm" fw={700}>{stats.topSelling[0].qty} units sold</Text>
+                                  <Divider orientation="vertical" />
+                                  <Text size="sm" c="green" fw={700}>₹ {stats.topSelling[0].revenue.toLocaleString()}</Text>
+                               </Group>
+                               <Text size="xs" c="dimmed">Contributing {( (stats.topSelling[0].revenue / (stats.totalSales || 1)) * 100).toFixed(1)}% of total revenue</Text>
                             </Stack>
-                           <Box style={{ flex: 1, textAlign: 'center' }}>
-                              <Stack align="center" gap="xs" mt="md">
-                                 <Image src="https://img.icons8.com/color/96/empty-box.png" w={60} />
-                                 <Text size="xs" c="dimmed" maw={300}>Your top selling items will show up here after you've made a few sales.</Text>
-                              </Stack>
-                           </Box>
                         </Group>
                       ) : (
                         <Center h={150}>
-                           <Text size="sm" c="dimmed">No sales data found during this period.</Text>
+                           <Stack align="center" gap="xs">
+                              <Image src="https://img.icons8.com/color/96/empty-box.png" w={60} />
+                              <Text size="sm" c="dimmed">No sales data found during this period.</Text>
+                           </Stack>
                         </Center>
                       )}
                     </Box>
@@ -375,15 +391,17 @@ export function Dashboard({ onViewChange }: DashboardProps) {
                         <Button variant="default" size="compact-xs" radius="xl" c="dimmed">By Value</Button>
                       </Group>
                       <Box h={250} mt="xl" style={{ position: 'relative' }}>
-                        <Text size="xs" c="dimmed" style={{ position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 1 }}>
-                          No sales orders created during this period.
-                        </Text>
+                        {!data.some(d => d.sales > 0) && (
+                          <Text size="xs" c="dimmed" style={{ position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 1 }}>
+                            No sales created during this period.
+                          </Text>
+                        )}
                         <ResponsiveContainer width="100%" height="100%">
                           <AreaChart data={data}>
                             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f3f5" />
                             <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#adb5bd' }} />
-                            <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#adb5bd' }} domain={[0, 5000]} ticks={[0, 1000, 2000, 3000, 4000, 5000]} />
-                            <Area type="monotone" dataKey="sales" stroke="#dee2e6" fill="#f8f9fa" />
+                            <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#adb5bd' }} domain={[0, stats?.maxSales || 5000]} />
+                            <Area type="monotone" dataKey="sales" stroke={stats?.maxSales ? '#3b82f6' : '#dee2e6'} fill={stats?.maxSales ? '#dbeafe' : '#f8f9fa'} />
                           </AreaChart>
                         </ResponsiveContainer>
                       </Box>

@@ -134,10 +134,13 @@ export function NewItem({ onClose, editingId, isCloning }: NewItemProps) {
       weightUnit: 'kg',
       preferredVendor: '',
       taxType: 'gst18',
+      salesDescription: '',
+      purchaseTaxType: 'gst18',
       attachments: [] as { name: string, base64: string }[],
     },
     validate: {
       name: (value) => (value.length < 2 ? 'Name is required' : null),
+      unit: (value) => (!value ? 'Unit is required' : null),
     },
   });
 
@@ -469,7 +472,7 @@ export function NewItem({ onClose, editingId, isCloning }: NewItemProps) {
                       <Grid.Col span={6}>
                         <Stack gap="md">
                           <Group grow align="center"><Text size="sm" c="red" w={100}>Selling Price*</Text><NumberInput prefix="₹ " {...form.getInputProps('salesPrice')} /></Group>
-                          <Group grow align="center"><Text size="sm" w={100}>Description</Text><Textarea rows={3} /></Group>
+                          <Group grow align="center"><Text size="sm" w={100}>Description</Text><Textarea rows={3} {...form.getInputProps('salesDescription')} /></Group>
                         </Stack>
                       </Grid.Col>
                       <Grid.Col span={6}>
@@ -497,7 +500,7 @@ export function NewItem({ onClose, editingId, isCloning }: NewItemProps) {
                       <Grid.Col span={6}>
                         <Stack gap="md">
                           <Group grow align="center"><Text size="sm" c="red" w={100}>Account*</Text><Select data={purchaseAccounts.map(g => ({ group: g.group, items: g.items }))} searchable placeholder="Select an account" {...form.getInputProps('purchaseAccount')} /></Group>
-                          <Group grow align="center"><Group gap="xs" w={100}><Text size="sm">Tax</Text><HelpCircle size={14} color="#adb5bd" /></Group><Select placeholder="Select Tax" data={[]} /></Group>
+                          <Group grow align="center"><Group gap="xs" w={100}><Text size="sm">Tax</Text><HelpCircle size={14} color="#adb5bd" /></Group><Select placeholder="Select Tax" data={TAX_OPTIONS} {...form.getInputProps('purchaseTaxType')} /></Group>
                         </Stack>
                       </Grid.Col>
                     </Grid>

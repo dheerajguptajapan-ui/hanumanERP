@@ -25,7 +25,8 @@ import {
   ChevronLeft, 
   Settings as SettingsIcon,
   X,
-  Info
+  Info,
+  AlertTriangle
 } from 'lucide-react';
 import { db, type Settings } from '../db';
 import { notifications } from '@mantine/notifications';
@@ -437,6 +438,47 @@ export function GeneralSettings({ onBack, onNavigate }: GeneralSettingsProps) {
                               {settings.addressFormat}
                            </Text>
                         </Box>
+                     </Paper>
+                  </Stack>
+
+                  <Divider />
+                  
+                  {/* Danger Zone */}
+                  <Stack gap="md" mt="xl">
+                     <Group gap="xs">
+                        <AlertTriangle size={18} color="red" />
+                        <Title order={5} c="red">Danger Zone</Title>
+                     </Group>
+                     <Paper withBorder p="md" radius="md" style={{ borderColor: '#fee2e2', backgroundColor: '#fef2f2' }}>
+                        <Group justify="space-between">
+                           <Stack gap={2}>
+                              <Text size="sm" fw={600}>Factory Reset</Text>
+                              <Text size="xs" c="dimmed">This will permanently delete all your data (Items, Customers, Invoices, Settings) and cannot be undone.</Text>
+                           </Stack>
+                           <Button 
+                              color="red" 
+                              variant="filled" 
+                              onClick={async () => {
+                                 if (window.confirm('ARE YOU ABSOLUTELY SURE? This will wipe the entire database and you will lose all your data.')) {
+                                    setLoading(true);
+                                    try {
+                                       // Clear all tables
+                                       const tables = db.tables;
+                                       for (const table of tables) {
+                                          await table.clear();
+                                       }
+                                       notifications.show({ title: 'Reset Successful', message: 'Redirecting to setup...', color: 'blue' });
+                                       setTimeout(() => window.location.reload(), 1500);
+                                    } catch (e) {
+                                       notifications.show({ title: 'Error', message: 'Failed to reset database', color: 'red' });
+                                       setLoading(false);
+                                    }
+                                 }
+                              }}
+                           >
+                              Reset Database
+                           </Button>
+                        </Group>
                      </Paper>
                   </Stack>
 

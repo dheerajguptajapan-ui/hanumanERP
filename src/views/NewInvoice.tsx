@@ -151,8 +151,8 @@ export function NewInvoice({ onClose, editingId, isCloning, salesOrderId }: NewI
       }
       
       if (!editingId || isCloning) {
-        const { generateDocNumber } = await import('../utils/numberSeries');
-        const nextNum = await generateDocNumber('invoice');
+        const { previewNextDocNumber } = await import('../utils/numberSeries');
+        const nextNum = await previewNextDocNumber('invoice');
         form.setFieldValue('invoiceNumber', nextNum);
       }
     };
@@ -199,8 +199,16 @@ export function NewInvoice({ onClose, editingId, isCloning, salesOrderId }: NewI
 
   const handleSave = async (values: typeof form.values, status: any = 'unpaid') => {
     try {
+      let finalInvoiceNumber = values.invoiceNumber;
+      
+      // If new invoice, generate the REAL number now (consuming it from series)
+      if (!editingId || isCloning) {
+        const { generateDocNumber } = await import('../utils/numberSeries');
+        finalInvoiceNumber = await generateDocNumber('invoice');
+      }
+
       const invoiceData = {
-        invoiceNumber: values.invoiceNumber,
+        invoiceNumber: finalInvoiceNumber,
         orderNumber: values.orderNumber,
         customerId: Number(values.customerId),
         customerName: values.customerName,
@@ -461,6 +469,7 @@ export function NewInvoice({ onClose, editingId, isCloning, salesOrderId }: NewI
                                   form.setFieldValue(`items.${index}.productName`, p.name);
                                   form.setFieldValue(`items.${index}.rate`, p.price);
                                   form.setFieldValue(`items.${index}.hsnCode`, p.hsnCode);
+                                  form.setFieldValue(`items.${index}.description`, p.description || '');
                                 }
                               }}
                             />
@@ -535,7 +544,7 @@ export function NewInvoice({ onClose, editingId, isCloning, salesOrderId }: NewI
                       <Grid align="center" gutter="xs">
                         <Grid.Col span={4}><Text size="sm">Discount</Text></Grid.Col>
                         <Grid.Col span={4}>
-                          <TextInput label="Bank Name" {...form.getInputProps('bankName')} />
+                          <NumberInput {...form.getInputProps('discount')} />
                         </Grid.Col>
                         <Grid.Col span={2}>
                           <Select size="xs" data={['%', '₹']} {...form.getInputProps('discountType')} />
